@@ -45,5 +45,11 @@ jobs:
           - name: send email on success
             run: "everything seems fun"
             if: ${{ success() }}
-            
+          - name: Upload test results
+            uses: actions/upload-artifact@v4
+            with:
+              name: spring-petclinic-test-results
+              path: 
+                **/.github/workflows/* /
+                **/.github/workflows/*  
 
