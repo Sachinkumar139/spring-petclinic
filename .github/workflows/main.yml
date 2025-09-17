@@ -50,11 +50,6 @@ jobs:
             with:
               name: spring-petclinic-test-results
               path: |
-<<<<<<< HEAD
-                  **/target/surefire-reports/**
-                  **/target/failsafe-reports/**
-=======
-                **/.github/workflows/manual-mvn.yaml/* 
-                **/.github/workflows/manual-mvn.yaml*  
->>>>>>> 4614dfd37a3c45dd50612d4a3ef58182ecf33c2e
+                **/.github/workflows/main.yaml/*
+                **/.github/workflows/main.yaml*  
 
