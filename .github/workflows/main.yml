@@ -50,6 +50,6 @@ jobs:
             with:
               name: spring-petclinic-test-results
               path: 
-                **/.github/workflows/manual-mvn.yaml/* 
-                **/.github/workflows/manual-mvn.yaml*  
+                **/.github/workflows/main.yaml/*
+                **/.github/workflows/main.yaml*  
 
