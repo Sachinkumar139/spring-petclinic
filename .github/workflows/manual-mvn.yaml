@@ -39,7 +39,7 @@ jobs:
       - name: Upload packaged JAR files
         uses: actions/upload-artifact@v4
         with:
-          name: spring-petclinic-${{ matrix.java }}.jar
+          name: spring-petclinic-${{ matrix.java }}
           path: '**/target/*.jar'
 
       - name: Send email on failure
