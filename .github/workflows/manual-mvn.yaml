@@ -1,7 +1,8 @@
 name: Manual maven steps for ci
+
 on:
   pull_request:
-    branches: 
+    branches:
       - main
   workflow_dispatch:
 
@@ -29,13 +30,24 @@ jobs:
 
       - name: Build package
         run: mvn clean verify --batch-mode
+      
+      - name: Upload packaged JAR files
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-petclinic-${{ matrix.java }}-${{ github.run_number }}
+          path: '**/target/*.jar'
+
+        
+
+
+
 
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
           files: |
             **/target/surefire-reports/*.xml
-            **/target/failsafe-reports/*.xml
+      
 
       - name: Upload packaged JAR files
         uses: actions/upload-artifact@v4
@@ -51,10 +63,4 @@ jobs:
         run: echo "everything seems fun"
         if: ${{ success() }}
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: spring-petclinic-test-results
-          path: |
-            **/target/surefire-reports/**
-            **/target/failsafe-reports/**
+      
