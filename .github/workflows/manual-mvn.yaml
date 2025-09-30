@@ -28,6 +28,14 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: maven
 
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-${{ matrix.java }}    
+
       - name: Build package
         run: mvn clean verify --batch-mode
       
@@ -36,12 +44,6 @@ jobs:
         with:
           name: spring-petclinic-${{ matrix.java }}-${{ github.run_number }}
           path: '**/target/*.jar'
-
-        
-
-
-
-
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
